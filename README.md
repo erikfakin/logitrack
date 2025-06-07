@@ -18,7 +18,7 @@ Logitrack predstavlja sustav za praćenje i upravljanje pošiljkama. Omogućuje 
 
 1. Klonirajte repozitorij na svoje računalo:
     ```powershell
-    git clone <URL_REPOZITORIJA>
+    git clone https://github.com/erikfakin/logitrack
     ```
 
 2. Uđite u direktorij projekta:
