@@ -1,4 +1,4 @@
-# Logitrack: Projekt Informatički Sustavi
+# Logitrack: projekt Informacijski Sustavi
 
 ## Opis projekta
 Logitrack predstavlja sustav za praćenje i upravljanje pošiljkama. Omogućuje korisnicima kreiranje, uređivanje, praćenje statusa i dostavu pošiljaka. Sustav je osmišljen kako bi olakšao logističke procese i pružio korisnicima intuitivno sučelje za upravljanje pošiljkama.
