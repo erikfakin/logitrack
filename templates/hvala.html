@@ -1,0 +1,89 @@
+{% extends 'base.html' %} {% block title %}Pošalji paket{% endblock %}
+{% block content %}
+
+
+<div class="card shadow-lg">
+    <div class="card-header bg-primary text-white text-center">
+        <h1 class="mb-0">Hvala!</h1>
+    </div>
+    <div class="card-body">
+        <p class="text-center fs-5">Vaša pošiljka je uspješno poslana.</p>
+        <p class="text-center fs-5">Vaš broj pošiljke je: <strong>{{ posiljka.broj_posiljke }}</strong></p>
+        <p class="text-center fs-6">Detalji pošiljke:</p>
+
+        <h3 class="mt-3">Podaci o pošiljatelju</h3>
+        <table class="table table-bordered mt-3 mb-3">
+            <colgroup>
+                <col style="width: 50%;">
+                <col style="width: 50%;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Adresa prikupa</th>
+                    <td>{{ posiljka.adresa_prikupa }}</td>
+                </tr>
+                <tr>
+                    <th>Grad prikupa</th>
+                    <td>{{ posiljka.grad_prikupa }}</td>
+                </tr>
+                <tr>
+                    <th>Naziv pošiljatelja</th>
+                    <td>{{ posiljka.naziv_posiljatelj }}</td>
+                </tr>
+                <tr>
+                    <th>Telefon pošiljatelja</th>
+                    <td>{{ posiljka.tel_posiljatelj }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="mt-3">Podaci o primatelju</h3>
+        <table class="table table-bordered mt-3 mb-3"></table>
+        <colgroup>
+            <col style="width: 50%;">
+            <col style="width: 50%;">
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>Adresa dostave</th>
+                <td>{{ posiljka.adresa_dostave }}</td>
+            </tr>
+            <tr>
+                <th>Grad dostave</th>
+                <td>{{ posiljka.grad_dostave }}</td>
+            </tr>
+            <tr>
+                <th>Naziv primatelja</th>
+                <td>{{ posiljka.naziv_primatelj }}</td>
+            </tr>
+            <tr>
+                <th>Telefon primatelja</th>
+                <td>{{ posiljka.tel_primatelj }}</td>
+            </tr>
+        </tbody>
+        </table>
+
+        <h3 class="mt-3">Status pošiljke</h3>
+        <table class="table table-bordered mt-3 mb-3">
+            <colgroup>
+                <col style="width: 50%;">
+                <col style="width: 50%;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ posiljka.status }}</td>
+                </tr>
+                <tr>
+                    <th>Datum slanja</th>
+                    <td>{{ posiljka.datum_slanja }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer text-center">
+        <a href="/" class="btn btn-primary">Povratak na početnu</a>
+    </div>
+</div>
+
+{% endblock %}

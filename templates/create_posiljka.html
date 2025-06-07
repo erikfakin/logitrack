@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% block title %}Pošalji paket{% endblock %}
+{% block content %}
+
+<h1 class="display-4 fw-bold mb-5">Pošalji paket</h1>
+
+<form action="{{ url_for('store_posiljka') }}" method="POST">
+    <div class="card mb-5">
+
+        <div class="card-header">
+            <h3 class="mb-0">Pošiljatelj (adresa prikupa)</h3>
+        </div>
+
+        <div class="card-body row">
+
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="naziv_posiljatelj">Ime i prezime</label>
+                <input name="naziv_posiljatelj" type="text" id="naziv_posiljatelj" class="form-control" required>
+            </div>
+
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="tel_posiljatelj">Broj telefona</label>
+                <input type="text" id="tel_posiljatelj" class="form-control" name="tel_posiljatelj" required>
+            </div>
+
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="adresa_prikupa">Adresa prikupa</label>
+                <input type="text" id="adresa_prikupa" class="form-control" name="adresa_prikupa" required>
+            </div>
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="grad_prikupa">Grad prikupa</label>
+                <input type="text" id="grad_prikupa" class="form-control" name="grad_prikupa" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-5">
+        <div class="card-header">
+            <h3 class="mb-0">Primatelj (adresa dostave)</h3>
+        </div>
+        <div class="card-body row">
+
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="naziv_primatelj">Ime i prezime</label>
+                <input name="naziv_primatelj" type="text" id="naziv_primatelj" class="form-control" required>
+            </div>
+
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="tel_primatelj">Broj telefona</label>
+                <input type="text" id="tel_primatelj" class="form-control" name="tel_primatelj" required>
+            </div>
+
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="adresa_dostave">Adresa dostave</label>
+                <input type="text" id="adresa_dostave" class="form-control" name="adresa_dostave" required>
+            </div>
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="grad_dostave">Grad dostave</label>
+                <input type="text" id="grad_dostave" class="form-control" name="grad_dostave" required>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="d-grid ">
+        <button type="submit" class="btn btn-primary">
+            Pošalji <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17L17 7M17 7H8M17 7V16" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+</form>
+
+
+{% endblock %}

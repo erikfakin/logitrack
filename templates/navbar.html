@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container px-0">
+        <a class="navbar-brand fw-bold" href="{{ url_for('home') }}"><span class="text-primary">Logi</span>Track</a>
+
+        <div class="collapse navbar-collapse" id="navbar-default5">
+            <ul class="navbar-nav ms-auto ">
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ url_for('create_posiljka') }}">Pošalji paket</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('track_posiljka') }}">Prati pošiljku</a>
+                </li>
+                <li class=" nav-item">
+                    <a class="nav-link" href="{{ url_for('get_posiljke') }}">Pregled pošiljki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('grafovi') }}">Grafovi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('deliver_posiljka_form')}}">Dostavi pošiljku</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

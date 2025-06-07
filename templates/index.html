@@ -1,0 +1,126 @@
+{% extends 'base.html' %} {% block title %}Pošalji paket{% endblock %}
+{% block content %}
+
+
+<div class="row d-flex align-items-center">
+    <div class=" col-xxl-5  col-xl-6 col-lg-6 col-12">
+        <div>
+            <h1 class="display-4 fw-bold mb-3">Logitrack - brzo i efikasno <u class="text-warning"><span
+                        class="text-primary">slanje paketa</span></u></h1>
+            <p class="lead mb-4">Naruči slanje paketa preko naše web stranice u samo park koraka ili prati svoju
+                pošilkju!</p>
+            <ul class="list-unstyled mb-5">
+                <li class="mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)"
+                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                        </path>
+                    </svg>
+                    <span class="ms-2">Brzo</span>
+                </li>
+                <li class="mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)"
+                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                        </path>
+                    </svg>
+                    <span class="ms-2">Efikasno</span>
+                </li>
+                <li class="mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--bs-success)"
+                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                        </path>
+                    </svg>
+                    <span class="ms-2">Prati pošiljku</span>
+                </li>
+
+            </ul>
+            <div class="row gy-4">
+                <a href="{{ url_for('create_posiljka')}}" class="col-xl-6 col-lg-6 col-md-6 col-12">
+                    <div class="card  border-top border-muted border-4  card-hover-with-icon">
+                        <div class="card-body">
+                            <div class="icon-shape icon-lg mb-3  card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="64" height="64"
+                                    viewBox="0 0 24 24" id="shipping-box-left" data-name="Flat Line"
+                                    class="icon flat-line">
+                                    <path id="secondary"
+                                        d="M20,5H16v6l-2-1-2,1V5H8A1,1,0,0,0,7,6V18a1,1,0,0,0,1,1H20a1,1,0,0,0,1-1V6A1,1,0,0,0,20,5Z"
+                                        style="fill:#0d6efd; stroke-width: 2;" />
+                                    <path id="primary" d="M9,5H20a1,1,0,0,1,1,1V18a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V17"
+                                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                                    <path id="primary-2" data-name="primary" d="M16,5v6l-2-1-2,1V5ZM3,9H7m1,4H3"
+                                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                                </svg>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h4 class="mb-0">Pošalji paket</h4>
+                                </div>
+                                <div class="text-inherit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+
+                <a href="{{ url_for('track_posiljka')}}" class="col-xl-6 col-lg-6 col-md-6 col-12">
+                    <div class="card  border-top border-muted border-4  card-hover-with-icon">
+                        <div class="card-body">
+                            <div class="icon-shape icon-lg mb-3  card-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                    fill="#000000" width="64" height="64" viewBox="0 0 24 24" id="pin-drop"
+                                    data-name="Flat Line" class="icon flat-line">
+                                    <path id="secondary" d="M17,8A5,5,0,0,0,7,8c0,4,5,9,5,9S17,12,17,8Z"
+                                        style="fill: #ffc107; stroke-width: 2;" />
+                                    <line id="primary-upstroke" x1="12" y1="8" x2="12" y2="8"
+                                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.5;" />
+                                    <path id="primary"
+                                        d="M15.93,18.64A.92.92,0,0,1,16,19c0,1.1-1.79,2-4,2s-4-.9-4-2a.92.92,0,0,1,.07-.36"
+                                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                                    <path id="primary-2" data-name="primary"
+                                        d="M17,8A5,5,0,0,0,7,8c0,4,5,9,5,9S17,12,17,8Z"
+                                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                                </svg></div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h4 class="mb-0">Prati pošiljku</h4>
+                                </div>
+                                <div class="text-inherit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6 col-12 d-lg-flex justify-content-end">
+        <div class="mt-12 mt-lg-0 position-relative">
+            <div class="position-absolute top-100 start-100 translate-middle  d-none d-md-block">
+                <img src="{{ url_for('static', filename='plane.png') }}" alt="graphics-2">
+            </div>
+            <img src="{{ url_for('static', filename='pozadina.jpg') }}" alt="online course"
+                class="img-fluid rounded-4 w-100 z-1 position-relative">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

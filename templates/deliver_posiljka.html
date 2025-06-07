@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block title %}Dostavi pošiljku{% endblock %}
+{% block content %}
+<h1>Označi pošiljku kao dostavljenu</h1>
+<form action="{{ url_for('deliver_posiljka') }}" method="POST">
+    <div class="mb-3 col-12 col-md-6">
+        <label class="form-label" for="broj_posiljke">Unesite broj pošiljke</label>
+        <input {% if broj_posiljke %} value="{{broj_posiljke}}" {% endif %} name="broj_posiljke" type="text"
+            id="broj_posiljke" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Označi kao isporuceno</button>
+</form>
+{% endblock %}

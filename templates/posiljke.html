@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block title %}Pošiljke{% endblock %}
+{% block content %}
+
+<h1 class="display-4 fw-bold mb-5">Pošiljke</h1>
+
+<h5 class="">Filtriranje</h5>
+<form class="mb-4 p-3 border rounded bg-light">
+    <div class="row g-3">
+        <div class="col-md-3">
+            <label for="grad_prikupa" class="form-label fw-bold">Grad Prikupa</label>
+            <input type="text" id="grad_prikupa" name="grad_prikupa" class="form-control"
+                placeholder="Unesite grad prikupa" value="{{ request.args.get('grad_prikupa', '') }}">
+        </div>
+        <div class="col-md-3">
+            <label for="grad_dostave" class="form-label fw-bold">Grad Dostave</label>
+            <input type="text" id="grad_dostave" name="grad_dostave" class="form-control"
+                placeholder="Unesite grad dostave" value="{{ request.args.get('grad_dostave', '') }}">
+        </div>
+        <div class="col-md-3">
+            <label for="status" class="form-label fw-bold">Status</label>
+            <select id="status" name="status" class="form-select">
+                <option value="" {% if not request.args.get('status') %}selected{% endif %}>Svi</option>
+                <option value="poslano" {% if request.args.get('status')=='poslano' %}selected{% endif %}>Poslano
+                </option>
+                <option value="neisporuceno" {% if request.args.get('status')=='neisporuceno' %}selected{% endif %}>
+                    Neisporučeno</option>
+                <option value="isporuceno" {% if request.args.get('status')=='isporuceno' %}selected{% endif %}>
+                    Isporuceno</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="sort_by" class="form-label fw-bold">Sortiraj po</label>
+            <select id="sort_by" name="sort_by" class="form-select">
+                <option value="datum_slanja" {% if request.args.get('sort_by')=='datum_slanja' %}selected{% endif %}>
+                    Datum slanja</option>
+                <option value="datum_isporuke" {% if request.args.get('sort_by')=='datum_isporuke' %}selected{% endif
+                    %}>Datum isporuke</option>
+                <option value="grad_prikupa" {% if request.args.get('sort_by')=='grad_prikupa' %}selected{% endif %}>
+                    Grad prikupa</option>
+                <option value="grad_dostave" {% if request.args.get('sort_by')=='grad_dostave' %}selected{% endif %}>
+                    Grad dostave</option>
+            </select>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Filtriraj</button>
+        </div>
+    </div>
+</form>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Grad Prikupa</th>
+            <th>Grad Dostave</th>
+            <th>Status</th>
+            <th>Datum Slanja</th>
+            <th>Datum Isporuke</th>
+            <th>Broj Pošiljke</th>
+            <th>Pregled</th>
+            <th>Dostavi</th>
+            <th>Uredi</th>
+            <th>Obriši</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if posiljke|length == 0 %}
+        <tr>
+            <td colspan="9" class="text-center">Nema pošiljki za prikaz</td>
+        </tr>
+        {% endif %}
+        {% for posiljka in posiljke %}
+        <tr>
+            <td>{{ posiljka.id }}</td>
+
+            <td>{{ posiljka.grad_prikupa }}</td>
+            <td>{{ posiljka.grad_dostave }}</td>
+            <td>{% if posiljka.status == 'isporuceno' %}<span
+                    class="badge rounded-pill text-bg-success">Isporučeno</span>{% elif
+                posiljka.status == 'poslano' %}<span class="badge rounded-pill text-bg-warning">Poslano</span>
+                {% elif
+                posiljka.status == 'neisporuceno' %}<span class="badge rounded-pill text-bg-danger">Neisporučeno</span>
+                {% endif%}
+
+            </td>
+            <td>{{ posiljka.datum_slanja.strftime('%d.%m.%Y, %H:%M') }}</td>
+            <td>{% if posiljka.datum_isporuke %} {{ posiljka.datum_isporuke.strftime('%d.%m.%Y, %H:%M') }} {% else %}
+                - {% endif %}
+            </td>
+            <td>{{ posiljka.broj_posiljke }}</td>
+            <td><a href="{{ url_for('get_posiljka', id=posiljka.id) }}" class="btn btn-info">Pregled</a></td>
+            {% if posiljka.status == 'isporuceno' %}
+            <td><button class="btn btn-success" disabled>Dostavi</button></td>
+            {% else %}
+
+            <td><a href="{{ url_for('deliver_posiljka', broj_posiljke=posiljka.broj_posiljke) }}"
+                    class="btn btn-success">Dostavi</a></td>
+            {% endif %}
+            <td><a href="{{ url_for('edit_posiljka', id=posiljka.id) }}" class="btn btn-warning">Uredi</a></td>
+            <td>
+                <form action="{{ url_for('delete_posiljka', id=posiljka.id) }}" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Obriši</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

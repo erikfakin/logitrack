@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block title %}Grafovi{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="grav_isporuka" height="400"></canvas>
+            </div>
+            <div class="card-footer text-center">
+                <strong>Isporučeno vs Neisporučeno</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="grav_packages_per_day" height="400"></canvas>
+            </div>
+            <div class="card-footer text-center">
+                <strong>Broj pošiljki po danu</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="delivery_time_days" height="400"></canvas>
+            </div>
+            <div class="card-footer text-center">
+                <strong>Vrijeme dostave</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const isporuke_ctx = document.getElementById('grav_isporuka');
+    const packages_ctx = document.getElementById('grav_packages_per_day');
+    const delivery_time_ctx = document.getElementById('delivery_time_days');
+
+    const isporuke_data = JSON.parse('{{ status_counts | tojson | safe }}');
+    const packages_per_day = JSON.parse('{{ packages_per_day | tojson | safe }}');
+    const delivery_time_data = JSON.parse('{{ delivery_time_days | tojson | safe }}');
+
+    new Chart(isporuke_ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Poslano", "Isporučeno", "Neisporučeno"],
+            datasets: [{
+                label: '# pošiljki',
+                data: [isporuke_data['poslano'], isporuke_data['isporuceno'], isporuke_data['neisporuceno']], // values of jsondata
+                borderWidth: 5,
+                backgroundColor: [
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(13,110,253, 1)',
+                    'rgba(255, 99, 132, 1)',
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Isporučeno vs neisporučeno'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const total = context.dataset.data.reduce((sum, value) => sum + value, 0);
+                            const value = context.raw;
+                            const percentage = ((value / total) * 100).toFixed(2);
+                            return `${context.label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        },
+    });
+
+    new Chart(packages_ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota", "Nedjelja"], // Extract the dates from the JSON data
+            datasets: [{
+                label: 'Broj pošiljki po danu',
+                data: [
+                    packages_per_day['Monday'],
+                    packages_per_day['Tuesday'],
+                    packages_per_day['Wednesday'],
+                    packages_per_day['Thursday'],
+                    packages_per_day['Friday'],
+                    packages_per_day['Saturday'],
+                    packages_per_day['Sunday']
+                ],
+                backgroundColor: 'rgba(13,110,253, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Broj pošiljki po danu'
+                }
+            }
+        },
+    });
+
+    new Chart(delivery_time_ctx, {
+        type: 'bar',
+        data: {
+            labels: ["0-1 dan", "2-3 dana", "4-5 dana", "6-+ dana"],
+            datasets: [{
+                label: 'Dana od slanja do isporuke',
+                data: [
+                    delivery_time_data['0-1'],
+                    delivery_time_data['2-3'],
+                    delivery_time_data['4-5'],
+                    delivery_time_data['6+'],
+                ],
+                backgroundColor: 'rgba(13,110,253, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Vrijeme dostave'
+                }
+            },
+
+        },
+    });
+</script>
+{% endblock %}

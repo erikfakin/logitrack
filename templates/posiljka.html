@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Prati pošiljku{% endblock %}
+{% block content %}
+
+<h1 class="display-4 fw-bold mb-4">Detalji pošiljke</h1>
+
+<a href="{{ url_for('edit_posiljka', id=posiljka.id) }}" class="btn btn-primary mb-4">Uredi pošiljku</a>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Broj pošiljke: <span class="text-primary">{{ posiljka.broj_posiljke }}</span></h5>
+        <hr>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5 class="fw-bold">Informacije o slanju</h5>
+                <p><strong>Adresa prikupa:</strong> {{ posiljka.adresa_prikupa }}</p>
+                <p><strong>Grad prikupa:</strong> {{ posiljka.grad_prikupa }}</p>
+                <p><strong>Naziv pošiljatelja:</strong> {{ posiljka.naziv_posiljatelj }}</p>
+                <p><strong>Telefon pošiljatelja:</strong> {{ posiljka.tel_posiljatelj }}</p>
+                <p><strong>Datum slanja:</strong> {{ posiljka.datum_slanja.strftime('%d.%m.%Y, %H:%M') }}</p>
+            </div>
+            <div class="col-md-6">
+                <h5 class="fw-bold">Informacije o dostavi</h5>
+                <p><strong>Adresa dostave:</strong> {{ posiljka.adresa_dostave }}</p>
+                <p><strong>Grad dostave:</strong> {{ posiljka.grad_dostave }}</p>
+                <p><strong>Naziv primatelja:</strong> {{ posiljka.naziv_primatelj }}</p>
+                <p><strong>Telefon primatelja:</strong> {{ posiljka.tel_primatelj }}</p>
+                <p><strong>Datum isporuke:</strong>
+                    {% if posiljka.datum_isporuke %}
+                    {{ posiljka.datum_isporuke.strftime('%d.%m.%Y, %H:%M') }}
+                    {% else %}
+                    <span class="text-muted">Nije dostupno</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <p><strong>Status:</strong>
+                    {% if posiljka.status == 'isporuceno' %}
+                    <span class="badge bg-success">Isporučeno</span>
+                    {% elif posiljka.status == 'poslano' %}
+                    <span class="badge bg-warning text-dark">Poslano</span>
+                    {% elif posiljka.status == 'neisporuceno' %}
+                    <span class="badge bg-danger">Neisporučeno</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
