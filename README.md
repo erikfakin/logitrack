@@ -31,3 +31,5 @@ Logitrack predstavlja sustav za praćenje i upravljanje pošiljkama. Omogućuje 
     docker build -t logitrack .
     docker run -p 5000:5000 logitrack
     ```
+
+4. Posjetite [http://localhost:5000/seed](http://localhost:5000/seed) ukoliko želite seedati bazu podataka sa random podacima
